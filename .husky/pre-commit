@@ -1,0 +1,2 @@
+npm run lint:fix --staged
+npx pretty-quick --staged

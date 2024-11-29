@@ -1,0 +1,296 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "airbnb-base",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:security-rules/recommended",
+    "plugin:node/recommended",
+    "ts-standard",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "prettier",
+    "plugin:security-node/recommended",
+    "plugin:unicorn/recommended"
+  ],
+  "env": {
+    "node": true
+  },
+  "plugins": ["@typescript-eslint", "node", "security", "prettier", "import", "unicorn"],
+  "rules": {
+    // --- Import and Prettier Rules ---
+    "import/no-commonjs": "error",
+    "prettier/prettier": "error",
+    "import/extensions": ["error", "ignorePackages", { "ts": "never", "tsx": "never" }],
+    "import/no-unused-modules": "error",
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "internal", ["parent", "sibling", "index"]],
+        "newlines-between": "always"
+      }
+    ],
+    "sort-imports": [
+      "error",
+      {
+        "ignoreCase": true,
+        "ignoreDeclarationSort": true,
+        "ignoreMemberSort": false,
+        "memberSyntaxSortOrder": ["none", "all", "single", "multiple"]
+      }
+    ],
+
+    // --- File and Folder Naming Conventions ---
+    "check-file/no-index": "error",
+    "check-file/filename-blocklist": [
+      "error",
+      {
+        "**/*.model.ts": "*.models.ts",
+        "**/*.util.ts": "*.utils.ts"
+      }
+    ],
+    "check-file/folder-match-with-fex": [
+      "error",
+      {
+        "*.test.{js,jsx,ts,tsx}": "**/__tests__/",
+        "*.styled.{jsx,tsx}": "**/pages/"
+      }
+    ],
+    "check-file/filename-naming-convention": [
+      "error",
+      {
+        "**/*.{jsx,tsx}": "KEBAB_CASE",
+        "**/*.{js,ts}": "KEBAB_CASE"
+      }
+    ],
+    "check-file/folder-naming-convention": [
+      "error",
+      {
+        "src/**/": "KEBAB_CASE",
+        "mocks/*/": "KEBAB_CASE"
+      }
+    ],
+
+    // --- TypeScript Rules ---
+    "@typescript-eslint/explicit-function-return-type": ["error", { "allowExpressions": true }],
+    "@typescript-eslint/explicit-module-boundary-types": "error",
+    "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "default",
+        "format": ["camelCase"],
+        "leadingUnderscore": "allow"
+      },
+      {
+        "selector": "variable",
+        "format": ["camelCase", "UPPER_CASE"],
+        "leadingUnderscore": "allow"
+      },
+      {
+        "selector": "typeLike",
+        "format": ["PascalCase"]
+      }
+    ],
+
+    // --- Node.js Rules ---
+    "node/no-unsupported-features/es-syntax": "error",
+    "node/no-missing-import": "error",
+    "node/no-extraneous-import": "error",
+    "node/no-unsupported-features/node-builtins": "error",
+    "node/no-missing-require": "error",
+    "node/no-extraneous-require": "error",
+    "node/shebang": "error",
+
+    // --- General Code Style Rules ---
+    "keyword-spacing": "error",
+    "linebreak-style": ["error", "unix"],
+    "max-len": ["error", { "code": 120 }],
+    "no-console": "warn",
+    "no-debugger": "warn",
+    "no-alert": "error",
+    "no-eval": "error",
+    "no-implied-eval": "error",
+    "no-script-url": "error",
+    "no-new-func": "error",
+    "no-new-wrappers": "error",
+    "no-restricted-properties": [
+      "error",
+      {
+        "property": "__defineGetter__",
+        "message": "Use Object.defineProperty instead."
+      },
+      {
+        "property": "__defineSetter__",
+        "message": "Use Object.defineProperty instead."
+      }
+    ],
+    "no-use-before-define": ["error", { "functions": false, "classes": true, "variables": true }],
+    "no-var": "error",
+    "prefer-const": "error",
+    "prefer-template": "error",
+    "prefer-rest-params": "error",
+    "prefer-spread": "error",
+    "prefer-arrow-callback": "error",
+    "arrow-spacing": "error",
+    "arrow-parens": ["error", "always"],
+    "arrow-body-style": "error",
+    "no-unused-expressions": ["error", { "allowTernary": true }],
+    "no-useless-concat": "error",
+    "no-useless-escape": "error",
+    "no-restricted-syntax": [
+      "error",
+      {
+        "selector": "ForInStatement",
+        "message": "Use Object.keys or Object.values instead."
+      },
+      {
+        "selector": "ForOfStatement",
+        "message": "Use array destructuring instead."
+      }
+    ],
+    "no-shadow": "error",
+    "no-underscore-dangle": "error",
+    "no-mixed-operators": "error",
+    "no-multi-assign": "error",
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }],
+    "radix": "error",
+    "prefer-destructuring": "error",
+    "strict": ["error", "global"],
+
+    // --- Unicorn Rules ---
+    "unicorn/filename-case": ["error", { "case": "kebabCase" }],
+    "unicorn/prevent-abbreviations": [
+      "error",
+      {
+        "allowList": {
+          "props": true,
+          "config": true
+        }
+      }
+    ],
+    "unicorn/consistent-function-scoping": "error",
+    "unicorn/prefer-query-selector": "error",
+    "unicorn/no-array-for-each": "error",
+    "unicorn/no-array-push-push": "error",
+    "unicorn/consistent-destructuring": "error",
+    "unicorn/prefer-ternary": "error",
+    "unicorn/no-null": "error",
+    "unicorn/no-useless-undefined": "error",
+    "unicorn/prefer-module": "error",
+    "unicorn/prefer-node-protocol": "error",
+    "unicorn/number-literal-case": "error",
+
+    // --- Security Rules ---
+    "security-rules/browser/no-xss": "error",
+    "security/detect-unsafe-regex": "error",
+    "security/detect-buffer-noassert": "error",
+    "security/detect-child-process": "error",
+    "security/detect-disable-mustache-escape": "error",
+    "security/detect-eval-with-expression": "error",
+    "security/detect-non-literal-regexp": "error",
+    "security/detect-non-literal-fs-filename": "error",
+    "security/detect-non-literal-require": "error",
+    "security/detect-object-injection": "error",
+    "security/detect-possible-timing-attacks": "error",
+    "security-node/detect-crlf": "error",
+    "security-node/detect-insecure-randomness": "error",
+    "security-node/detect-dangerous-redirects": "error",
+    "security-rules/universal/no-hardcoded-credentials": "error"
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@typescript-eslint/recommended"],
+      "parserOptions": {
+        "project": ["./tsconfig.json"]
+      },
+      "rules": {
+        // Overrides specific to TypeScript files
+        "@typescript-eslint/no-explicit-any": 0,
+        "@typescript-eslint/no-var-requires": 0,
+        "@typescript-eslint/no-unused-vars": 0,
+        "@typescript-eslint/explicit-module-boundary-types": 0,
+        "@typescript-eslint/explicit-function-return": 0,
+        "@typescript-eslint/explicit-function-return-type": 0,
+        "radix": 0,
+        "node/no-unsupported-features/es-syntax": 0,
+        "no-console": 0,
+        "no-mixed-operators": 0,
+        "node/no-missing-import": 0,
+        "check-file/folder-naming-convention": 0,
+        "check-file/no-index": 0,
+        "check-file/filename-blocklist": 0,
+        "check-file/folder-match-with-fex": 0,
+        "check-file/filename-naming-convention": 0,
+        "unicorn/filename-case": 0,
+        "no-underscore-dangle": 0,
+        "no-use-before-define": 0,
+        "node/no-missing-require": 0,
+        "no-process-exit": 0,
+        "prefer-destructuring": 0,
+        "no-prototype-builtins": 0,
+        "node/no-unsupported-features/node-builtins": 0,
+        "@typescript-eslint/ban-ts-comment": 0,
+        "security/detect-object-injection": 0,
+        "no-shadow": 0,
+        "no-case-declarations": 0,
+        "no-inner-declarations": 0,
+        "no-unsafe-optional-chaining": 0,
+        "no-useless-escape": 0,
+        "no-restricted-syntax": 0,
+        "no-self-assign": 0,
+        "no-unused-expressions": 0,
+        "@typescript-eslint/ban-types": 0,
+        "security/detect-unsafe-regex": 0,
+        "security-rules/browser/no-xss": 0,
+        "@typescript-eslint/naming-convention": 0,
+        "import/no-named-as-default": 0,
+        "camelcase": 0,
+        "no-tabs": 0,
+        "no-return-await": 0,
+        "eqeqeq": 0,
+        "security-node/detect-crlf": 0,
+        "security-node/detect-insecure-randomness": 0,
+        "unicorn/no-null": 0,
+        "unicorn/prevent-abbreviations": 0,
+        "unicorn/no-array-for-each": 0,
+        "import/extensions": 0,
+        "unicorn/consistent-function-scoping": 0,
+        "no-param-reassign": 0,
+        "consistent-return": 0,
+        "max-classes-per-file": 0,
+        "unicorn/prefer-module": 0,
+        "import/prefer-default-export": 0,
+        "no-plusplus": 0,
+        "default-param-last": 0,
+        "unicorn/consistent-destructuring": 0,
+        "default-case": 0,
+        "no-await-in-loop": 0,
+        "guard-for-in": 0,
+        "array-callback-return": 0,
+        "no-empty-function": 0,
+        "prefer-const": 0,
+        "security-node/detect-dangerous-redirects": 0,
+        "no-continue": 0,
+        "security-rules/universal/no-hardcoded-credentials": 0,
+        "no-promise-executor-return": 0,
+        "import/no-unused-modules": 0,
+        "unicorn/no-array-reduce": 0,
+        "unicorn/no-array-callback-reference": 0,
+        "unicorn/no-object-as-default-parameter": 0,
+        "max-len": 0,
+        "unicorn/no-useless-promise-resolve-reject": 0,
+        "unicorn/no-abusive-eslint-disable": 0,
+        "unicorn/no-await-expression-member": 0,
+        "unicorn/prefer-logical-operator-over-ternary": 0,
+        "unicorn/prefer-spread": 0,
+        "import/namespace": 0,
+        "unicorn/prefer-array-some": 0
+      }
+    }
+  ]
+}
